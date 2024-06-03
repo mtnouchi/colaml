@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "colaml"
+authors = [{name = "Shun Yamanouchi", email = "yamanouchi@bs.s.u-tokyo.ac.jp"}]
+dynamic = ["version"]
+license = {file = "LICENSE"}
+dependencies = [
+    "numba", 
+    "numpy", 
+    "scipy", 
+    "tqdm", 
+    "ete3", 
+    "matplotlib", 
+    "pandas", 
+    "seaborn"
+]
+
+[tool.setuptools]
+py-modules = ["colaml"]
+
+[tool.setuptools.dynamic]
+version = {attr = "colaml.__version__"}
+
