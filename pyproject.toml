@@ -13,13 +13,17 @@ dependencies = [
     "tqdm", 
     "ete3", 
     "matplotlib", 
+    "threadpoolctl", 
     "pandas", 
     "seaborn"
 ]
+
+[project.scripts]
+colaml = "colaml.__main__:main"
 
 [tool.setuptools]
 py-modules = ["colaml"]
 
 [tool.setuptools.dynamic]
-version = {attr = "colaml.__version__"}
+version = {attr = "colaml._version.__version__"}
 
