@@ -5,10 +5,10 @@ import warnings
 from logging import DEBUG, Formatter, StreamHandler, getLogger
 from pathlib import Path
 
-import colaml.unsupported
 import numpy as np
 
 import colaml
+import colaml.unsupported
 
 logger = getLogger()
 
@@ -379,12 +379,12 @@ def fit_mmm(args):
         init_params_kw=init_params_kw,
         fit_kw=fit_kw,
         internal=dict(
-            ss_method=ss_method, 
+            ss_method=ss_method,
         ),
         result=dict(
-            init=init, 
-            params=mmm._decompress_flat_params(mmm.flat_params), 
-            converged=converged
+            init=init,
+            params=mmm._decompress_flat_params(mmm.flat_params),
+            converged=converged,
         ),
     )
     with gzip.open(args.output, 'wt') as output_file:
@@ -472,7 +472,7 @@ def fit_mirage(args):
         fit_kw=fit_kw,
         internal=dict(ss_method=ss_method),
         result=dict(
-            init=init, 
+            init=init,
             params=mirage._decompress_flat_params(mirage.flat_params),
             converged=converged,
         ),
@@ -553,7 +553,7 @@ def fit_branch(args):
         fit_kw=fit_kw,
         internal=dict(ss_method=ss_method),
         result=dict(
-            init=init, 
+            init=init,
             params=branch._decompress_flat_params(branch.flat_params),
             converged=converged,
         ),
@@ -613,44 +613,40 @@ def recon(args):
     phytbl.tree.fill_names(ignore_tips=True)
 
     recon = model.reconstruct(phytbl, method=args.method)
-    
+
     result = dict(
         args=vars(args),
         tree=phytbl.tree.to_ete3().write(format=3),
         recon=dict(
-            columns=columns, 
-            index=[*recon.to_dict(copy=False).keys()], 
-            data=[*recon.to_dict(copy=False).values()]
+            columns=columns,
+            index=[*recon.to_dict(copy=False).keys()],
+            data=[*recon.to_dict(copy=False).values()],
         ),
         otherstates=[
             dict(
-                label=other.label, 
+                label=other.label,
                 states=dict(
-                    columns=columns, 
-                    index=[*other.to_dict(copy=False).keys()], 
-                    data=[*other.to_dict(copy=False).values()]
-                )
+                    columns=columns,
+                    index=[*other.to_dict(copy=False).keys()],
+                    data=[*other.to_dict(copy=False).values()],
+                ),
             )
             for other in recon.otherstates.values()
-        ], 
+        ],
         colattrs=[
-            dict(
-                name=colattr.label, 
-                index=columns, 
-                data=colattr.to_list(copy=False)
-            )
+            dict(name=colattr.label, index=columns, data=colattr.to_list(copy=False))
             for colattr in recon.colattrs.values()
-        ], 
+        ],
         nodeattrs=[
             dict(
-                name=nodeattr.label, 
+                name=nodeattr.label,
                 index=[*nodeattr.to_dict(copy=False).keys()],
-                data=[*nodeattr.to_dict(copy=False).values()]
+                data=[*nodeattr.to_dict(copy=False).values()],
             )
             for nodeattr in recon.nodeattrs.values()
-        ]
+        ],
     )
-    
+
     with gzip.open(args.output, 'wt') as output_file:
         json.dump(result, output_file, indent=2, cls=CoLaMLEncoder)
 
