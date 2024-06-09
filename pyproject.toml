@@ -1,11 +1,16 @@
 [build-system]
 requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "colaml"
-authors = [{name = "Shun Yamanouchi", email = "yamanouchi@bs.s.u-tokyo.ac.jp"}]
+authors = [
+    {name = "Shun Yamanouchi", email = "yamanouchi@bs.s.u-tokyo.ac.jp"}
+]
 dynamic = ["version"]
 license = {file = "LICENSE"}
+readme = "README.md"
+requires-python = ">= 3.10"
 dependencies = [
     "numba", 
     "numpy", 
@@ -20,9 +25,6 @@ dependencies = [
 
 [project.scripts]
 colaml = "colaml.__main__:main"
-
-[tool.setuptools]
-py-modules = ["colaml"]
 
 [tool.setuptools.dynamic]
 version = {attr = "colaml._version.__version__"}
