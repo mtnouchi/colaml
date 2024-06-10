@@ -45,7 +45,7 @@ def phytbl_from_json(path: Path, lmax: int):
     #     .to_dict(orient='list')
     # )
 
-    return colaml.ExtantPhyTable(OGs, tree), input_data['OGs']['columns']
+    return colaml.ExtantPhyTable(OGs, tree), input_data['OGs'].get('columns')
 
 
 def gamma_par(string: str):
