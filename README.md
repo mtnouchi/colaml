@@ -23,18 +23,18 @@ To run CoLaML, you need to prepare a input json file describing phylogenetic tre
 
 - `tree` field: Phylogenetic tree in the Newick format string. Recognized as [format 3 in ete3](http://etetoolkit.org/docs/latest/reference/reference_tree.html). Tree leaves must be uniquely named.
 
-- `OGs` filed: ortholog table
-  - `index`: name of tree leaves as a list of string
-  - `columns`: (optional) name of orthologs as a list of string
-  - `data`: 2D-array of gene copy numbers in the order specified by index and columns. Values are automatically clipped to the range `[0, lmax]`.
-Note that 
+- `OGs` field: ortholog table
+  - `index`: name of tree leaves as a list of strings
+  - `columns`: (optional) name of orthologs as a list of strings
+  - `data`: 2D-array of gene copy numbers in the order specified by `index` and `columns`. Values are automatically clipped to the range `[0, lmax]`. 
+
 
 ### Model Fitting
 
 Three models are available:
 
-- `mmm`   : Markov-modulated model
-- `mirage`: Mirage: mixture model
+- `mmm`   : Markov-modulated model (our proposed model)
+- `mirage`: Mirage: mixture model ([REF](https://doi.org/10.1093/bioadv/vbab014))
 - `branch`: Branch model
 
 
