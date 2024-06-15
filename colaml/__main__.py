@@ -617,7 +617,7 @@ def recon(args):
 
     result = dict(
         args=vars(args),
-        tree=phytbl.tree.to_ete3().write(format=3),
+        tree=phytbl.tree.to_ete3().write(format=3, format_root_node=True),
         recon=dict(
             columns=columns,
             index=[*recon.to_dict(copy=False).keys()],
