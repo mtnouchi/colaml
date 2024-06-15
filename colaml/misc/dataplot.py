@@ -15,7 +15,10 @@ from . import phyplot
 
 
 def draw_extant(phytbl, lmax=None, phyloorient='row', phylotreekw=None, **clustermapkw):
-    OGs = pd.DataFrame(phytbl.to_dict(copy=False))
+    tree = phytbl.tree.to_ete3()
+    tree.ladderize()
+    tip_order = [node.name for node in tree.traverse('postorder') if node.is_leaf()]
+    OGs = pd.DataFrame(phytbl.to_dict(copy=False)).reindex(columns=tip_order)
     lmax = lmax or OGs.values.max()
     default_cmap = ListedColormap(
         [*map(plt.get_cmap('bone_r', lmax + 1), range(1, lmax + 1))]
@@ -47,7 +50,8 @@ def draw_extant(phytbl, lmax=None, phyloorient='row', phylotreekw=None, **cluste
             **clustermapkw,
         )
         phyplot.draw(
-            phytbl.tree.to_ete3(),
+            tree,
+            mode='standard',
             horizontal=True,
             loffs=0.5,
             lscale=1,
@@ -69,7 +73,8 @@ def draw_extant(phytbl, lmax=None, phyloorient='row', phylotreekw=None, **cluste
             **clustermapkw,
         )
         phyplot.draw(
-            phytbl.tree.to_ete3(),
+            tree,
+            mode='standard',
             horizontal=False,
             loffs=0.5,
             lscale=1,
