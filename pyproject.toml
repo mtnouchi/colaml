@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=64", "wheel", "setuptools_scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -25,6 +25,9 @@ dependencies = [
 
 [project.scripts]
 colaml = "colaml.__main__:main"
+
+[tool.setuptools_scm]
+version_file = "colaml/_version.py"
 
 [tool.setuptools.dynamic]
 version = {attr = "colaml._version.__version__"}
