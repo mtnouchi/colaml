@@ -100,6 +100,10 @@ options:
 
 (Under construction)
 
+## Test datasets
+
+See [here](https://github.com/mtnouchi/colaml-test).
+
 ## Citation
 
 (TBA)
