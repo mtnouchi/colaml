@@ -1,5 +1,14 @@
 # colaml
-CoLaML is a tool for joint inference of ancestral gene **Co**ntents and **La**tent evolutionary modes by **M**aximum **L**ikelihood method
+CoLaML is a tool for joint inference of ancestral gene **Co**ntents and **La**tent evolutionary modes by **M**aximum **L**ikelihood method.
+
+CoLaML models heterogeneity in gene content evolution as switching between rate categories (viewed as latent evolutionary modes). Technically, it relies on Markov-modulated Markov chain (quasi-birth-death process). See "Citation" for details.
+
+## Active Development
+
+CoLaML is under active development. 
+We welcome any questions, suggestions, or feature requests! 
+Feel free to open an issue or reach out to us. 
+Your feedback is highly appreciated and helps us improve the project.
 
 ## Requirements
 
@@ -106,4 +115,7 @@ See [here](https://github.com/mtnouchi/colaml-test).
 
 ## Citation
 
-(TBA)
+CoLaML: Inferring latent evolutionary modes from heterogeneous gene content  
+Shun Yamanouchi, Tsukasa Fukunaga, Wataru Iwasaki  
+bioRxiv 2024.12.02.626417; doi: https://doi.org/10.1101/2024.12.02.626417
+
